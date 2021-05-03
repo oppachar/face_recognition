@@ -18,7 +18,7 @@ JAWLINE = list(range(0, 17)) # index 1, 15 = 옆광대
 
 index = ALL
 
-image = cv2.imread("img2/1.jpg")
+image = cv2.imread("img2/22.jpg")
 
 image = imutils.resize(image, height=500) # image 크기 조절
 
@@ -42,59 +42,11 @@ x = (list_points[JAWLINE][3]-list_points[JAWLINE][4])[0]
 y = (list_points[JAWLINE][3]-list_points[JAWLINE][4])[1]
 #print(y/x) # 기울기 사각턱이면 점간의 기울기가 더 클 것으로 예상
 
-center = (list_points[NOSE][6]-list_points[RIGHT_EYEBROW][4])[1]
+p = (list_points[NOSE][0]+list_points[RIGHT_EYEBROW][4])/2 +1
+center = (list_points[NOSE][6]-p)[1]
 low = (list_points[JAWLINE][8]-list_points[NOSE][6])[1]
 
-#이목구비 면적 구하기
 
-lip_w = abs(list_points[MOUTH_OUTLINE][0]-list_points[MOUTH_OUTLINE][6])[0] #입술 가로
-lip_h = abs(list_points[MOUTH_OUTLINE][4]-list_points[MOUTH_OUTLINE][8])[1] #입술 세로
-
-print(lip_w,lip_h)
-print("입 면적 : ", lip_w*lip_h)
-
-nose_w = abs(list_points[NOSE][4]-list_points[NOSE][8])[0] #코 가로
-nose_h = abs(list_points[NOSE][0]-list_points[NOSE][6])[1] #코 세로
-
-print(nose_w, nose_h)
-print("코 면적 : ", nose_w*nose_h)
-
-leye_w = abs(list_points[LEFT_EYE][0]-list_points[LEFT_EYE][3])[0] #왼쪽 눈 가로
-leye_h = abs(list_points[LEFT_EYE][1]-list_points[LEFT_EYE][5])[1] #왼쪽 눈 세로
-
-print(leye_w, leye_h)
-print("왼쪽 눈 면적 : ", leye_w*leye_h)
-
-reye_w = abs(list_points[RIGHT_EYE][0]-list_points[RIGHT_EYE][3])[0] #오른쪽 눈 가로
-reye_h = abs(list_points[RIGHT_EYE][1]-list_points[RIGHT_EYE][5])[1] #오른쪽 눈 세로
-
-print(reye_w, reye_h)
-print("오른쪽 눈 면적 : ", reye_w*reye_h)
-
-
-'''#얼굴 전체 면적 구하기
-face_w = (list_points[JAWLINE][1]-list_points[JAWLINE][15])[0] #얼굴 가로
-face_h = (list_points[JAWLINE][8]-list_points[JAWLINE][15])[1] #얼굴 가로 (미완성)'''
-#이마 끝 점이랑 턱 끝 좌표 비교해서 얼굴 세로 구하기
-
-
-
-#콧볼 크기 판별
-eyetoeye = abs(list_points[RIGHT_EYE][3]-list_points[LEFT_EYE][0])[0] #미간 거리
-
-print("콧볼 크기 : ", nose_w)
-print("미간거리 : ", eyetoeye)
-
-if (nose_w + 10 > eyetoeye):
-    print("콧볼이 큰 타입")
-elif (nose_w + 10 < eyetoeye):
-    print("콧볼이 작은 타입")
-else:
-    print("콧볼 비율 완벽")
-#고정 픽셀값 정해놓으면 김태희사진(10) 기준으로 콧볼양끝값 조정하기
-
-
-#cv2.imshow("Output", image)
-#cv2.imshow("8", image2)
+cv2.imshow("Output", image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
