@@ -49,8 +49,8 @@ def is_bold(pnt, hair_mask):
         #print("Not Bold")
         return False
 
-#img1 = cv2.imread(file_name)     # Load image
-img1 = imutils.resize(image, height=500)     # We result in 500px in height
+img1 = image     # Load image
+#img1 = imutils.resize(image, height=500)     # We result in 500px in height
 mask = get_head_mask(img1)      # We get the mask of the head (without BG)
 
 # Find the contours, take the largest one and memorize its upper point as the top of the head
@@ -95,6 +95,7 @@ else:
 
     up = (list_points[RIGHT_EYEBROW][4] - hair_line_point)[1]
 
+# 상중하안부 비율의 기준 정하기
 if (up < center):
     if (up < low):
         criteria = up
@@ -113,12 +114,16 @@ elif (low < up):
     else :
         criteria = center
 
-print("상중하안부 비율 = ", round(up/criteria, 1), round(center/criteria,1 ), round(low/criteria,1))
 # 상중하안부 비율
+upper_ratio = round(abs(up/criteria), 1)
+center_ratio = round(abs(center/criteria), 1)
+lower_ratio = round(abs(low/criteria),1)
+print(upper_ratio, center_ratio, lower_ratio)
 
 # Display the image in a loop
-while True:
+'''while True:
     cv2.imshow("image1", img1)
     # Exit to Esc
     if cv2.waitKey(5) == 27:
         break
+'''
