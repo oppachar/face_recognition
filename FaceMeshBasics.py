@@ -27,6 +27,11 @@ if results.multi_face_landmarks:
             if (id == 123 or id == 352): # 광대 index에만 점을 찍음
                     print(id,x,y)
                     cv2.circle(img, (x, y), 2, (0, 255, 0), -1)
+                    
+                    
+            '''if (id == 102 or id == 278):  # 콧볼
+                print(id, x, y)
+                cv2.circle(img, (x, y), 2, (0, 255, 0), -1)'''
 
 '''cTime = time.time()
 fps = 1 / (cTime - pTime)
