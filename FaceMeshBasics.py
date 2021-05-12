@@ -5,8 +5,7 @@ import time
 #cap = cv2.VideoCapture("Videos/3.mp4")
 pTime = 0
 
-#image = cv2.imread("img/1.jpg")
-img = cv2.imread("img/2.jpg")
+img = cv2.imread("side/9.jpg")
 
 mpDraw = mp.solutions.drawing_utils
 mpFaceMesh = mp.solutions.face_mesh
@@ -24,14 +23,17 @@ if results.multi_face_landmarks:
             ih, iw, ic = img.shape
             x,y = int(lm.x*iw), int(lm.y*ih)
             #cv2.circle(img, (x, y), 2, (0,255,0), -1)
-            if (id == 123 or id == 352): # 광대 index에만 점을 찍음
-                    print(id,x,y)
-                    cv2.circle(img, (x, y), 2, (0, 255, 0), -1)
-                    
-                    
+            if (id == 123 or id == 116 or id == 147 or id == 352 or id == 345 or id == 376): # 광대 index에만 점을 찍음
+                print(id,x,y)
+                cv2.circle(img, (x, y), 2, (0, 255, 0), -1)
+
             '''if (id == 102 or id == 278):  # 콧볼
                 print(id, x, y)
                 cv2.circle(img, (x, y), 2, (0, 255, 0), -1)'''
+
+            if (id == 8 or id == 168 or id == 197 or id == 5 or id == 1 or id == 2):  # 콧대 index에만 점을 찍음
+                print(id, x, y)
+                cv2.circle(img, (x, y), 2, (0, 255, 0), -1)
 
 '''cTime = time.time()
 fps = 1 / (cTime - pTime)
